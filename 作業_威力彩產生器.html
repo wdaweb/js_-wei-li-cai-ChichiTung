@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>威力彩來囉！</title>
+  <script>
+    // 作業
+
+    // 用上面練習完成的 function 製作威力彩號碼產生器
+    // 將隨機出的數字用 document.write() 顯示在網頁上
+    // 威力彩規則： A 區 1~38 取 6 個數字
+    //            B 區 1~8 取 1 個數字
+
+
+    function Lottery() {
+
+      //  (v, k) => k + 1  就是箭頭函式 省略{}，實則為 map 寫法。v 為 value, k 為 key (+1 式讓他從 0-37 變 1-38)  
+      const numbers = Array.from({ length: 38 }, (v, k) => k + 1)
+
+      const rand = (min, max) => {
+        return Math.round(Math.random() * (max - min)) + min
+      }
+
+      let lottery_A = []
+      for (let i = 0; i < 6; i++) {
+        let num = rand(0, 37 - i)
+        lottery_A[i] = numbers[num]
+        let n = numbers.indexOf(lottery_A[i])
+        numbers.splice(n, 1)
+        console.log(numbers)
+      }
+      document.write(`A 區為 ${lottery_A} <br>`)
+
+      let lottery_B = rand(0, 8)
+      document.write(`B 區為 ${lottery_B}`)
+
+    }
+
+    console.log(Lottery())
+
+
+  </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
